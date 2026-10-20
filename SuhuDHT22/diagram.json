@@ -1,1 +1,39 @@
-
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 28.8, "left": -110.36, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 0.3,
+      "left": -245.4,
+      "attrs": { "temperature": "47.9", "humidity": "64.5" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht2",
+      "top": 0.3,
+      "left": -331.8,
+      "attrs": { "humidity": "43", "temperature": "37.3" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": 44.4, "left": 90.2, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led2", "top": 44.4, "left": 42.2, "attrs": { "color": "red" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v28.8", "h86.4", "v-86.4" ] ],
+    [ "esp:GND.1", "dht1:GND", "black", [ "h0" ] ],
+    [ "esp:14", "dht1:SDA", "green", [ "h-115.05" ] ],
+    [ "dht2:VCC", "esp:3V3", "red", [ "v28.8", "h172.8", "v-86.4" ] ],
+    [ "dht2:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "dht2:SDA", "esp:13", "green", [ "v0" ] ],
+    [ "esp:GND.2", "led1:C", "black", [ "v0", "h28.8", "v48", "h28.8" ] ],
+    [ "led2:C", "esp:GND.2", "black", [ "v19.2", "h-38", "v-48" ] ],
+    [ "esp:18", "led2:A", "green", [ "h0" ] ],
+    [ "esp:19", "led1:A", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
